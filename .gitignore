@@ -1,0 +1,44 @@
+# Ambientes Virtuais Python
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / otimizações
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Caches de ferramentas e linters
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.streamlit/cache/
+
+# DuckDB locks e arquivos temporários de WAL
+*.duckdb.wal
+*.duckdb.tmp
+
+# Arquivos de Sistema e IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Variáveis de ambiente com credenciais sensíveis
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

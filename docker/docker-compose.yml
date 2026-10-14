@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # -------------------------------------------------------------
+  # MinIO: Servidor de Objetos S3 Open Source (Data Lake)
+  # -------------------------------------------------------------
+  minio:
+    image: minio/minio:latest
+    container_name: bigdata_minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"   # API S3
+      - "9001:9001"   # Web Console UI
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadminpassword
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+
+  # -------------------------------------------------------------
+  # Metabase: BI & Visualização Open Source
+  # -------------------------------------------------------------
+  metabase:
+    image: metabase/metabase:latest
+    container_name: bigdata_metabase
+    restart: unless-stopped
+    ports:
+      - "3000:3000"   # Web UI
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+    volumes:
+      - metabase_data:/metabase-data
+    depends_on:
+      - minio
+
+volumes:
+  minio_data:
+    driver: local
+  metabase_data:
+    driver: local
